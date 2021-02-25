@@ -30,22 +30,19 @@ namespace RobloxSharp.Compiler {
 		}
 
 		private void _ParseSyntaxNode(CSharpSyntaxNode syntaxNode, bool isRecursive) {
-			switch (syntaxNode.Kind()) {
-				case SyntaxKind.VariableDeclaration: {
-					var syntax = (VariableDeclarationSyntax)syntaxNode;			
-					Nodes.VariableNode variableNode = new Nodes.VariableNode(syntax);
+			if (syntaxNode.Parent?.Kind() != SyntaxKind.Block) {
+				var convertedNode = SyntaxNodeConverter.ConvertSyntaxNode(syntaxNode);
 
-					_luaOutput += $"{variableNode.ToLua()}\n";
-
-					break;
+				if (convertedNode != null) {
+					_luaOutput += $"{convertedNode.ToLua()}\n";
 				}
-			}
 
-			if (isRecursive) {
-				foreach (var childNode in syntaxNode.ChildNodes()) {
-					CSharpSyntaxNode csharpNode = (CSharpSyntaxNode)childNode;
-					
-					_ParseSyntaxNode(csharpNode, true);
+				if (isRecursive) {
+					foreach (var childNode in syntaxNode.ChildNodes()) {
+						CSharpSyntaxNode csharpNode = (CSharpSyntaxNode)childNode;
+
+						_ParseSyntaxNode(csharpNode, true);
+					}
 				}
 			}
 		}
