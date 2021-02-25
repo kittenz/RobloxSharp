@@ -18,6 +18,12 @@ namespace RobloxSharp.Compiler {
 
 					return variableNode;
 				}
+				case SyntaxKind.LocalFunctionStatement: {
+					var syntax = (LocalFunctionStatementSyntax)syntaxNode;	
+					Nodes.FunctionNode functionNode = new Nodes.FunctionNode(syntax);
+
+					return functionNode;
+				}
 				default: {
 					return null;
 				}

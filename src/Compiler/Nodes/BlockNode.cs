@@ -31,10 +31,18 @@ namespace RobloxSharp.Compiler.Nodes {
 			}
 		}
 
+		private string _GetBlockStartKeyword() {
+			if (_blockSyntax.Parent?.Kind() == SyntaxKind.LocalFunctionStatement) {
+				return "";
+			} else {
+				return "do";
+			}
+		}
+
 		override public string ToLua() {
 			string output = "";
 			
-			output += "do\n";
+			output += $"{_GetBlockStartKeyword()}\n";
 
 			foreach (var node in _childNodes) {
 				string lua = node.ToLua();
