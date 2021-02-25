@@ -34,7 +34,7 @@ namespace RobloxSharp.Compiler {
 				var convertedNode = SyntaxNodeConverter.ConvertSyntaxNode(syntaxNode);
 
 				if (convertedNode != null) {
-					_luaOutput += $"{convertedNode.ToLua()}\n";
+					_luaOutput += $"{convertedNode.ToLua()}";
 				}
 
 				if (isRecursive) {

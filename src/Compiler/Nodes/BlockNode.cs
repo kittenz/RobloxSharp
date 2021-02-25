@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -38,7 +38,7 @@ namespace RobloxSharp.Compiler.Nodes {
 
 			foreach (var node in _childNodes) {
 				string lua = node.ToLua();
-				output += $"\t{lua}\n";
+				output += $"\t{lua}";
 			}
 
 			output += "end\n";

@@ -80,6 +80,8 @@ namespace RobloxSharp.Compiler.Nodes {
 				output += names;
 			}
 
+			output += "\n";
+
 			return output;
 		}
 	}
