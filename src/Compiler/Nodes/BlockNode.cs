@@ -21,13 +21,18 @@ namespace RobloxSharp.Compiler.Nodes {
 		private void _ConvertChildNodes(CSharpSyntaxNode syntaxNode) {
 			foreach (var childNode in syntaxNode.ChildNodes()) {
 				CSharpSyntaxNode node = (CSharpSyntaxNode)childNode;
-				NodeBase convertedNode = SyntaxNodeConverter.ConvertSyntaxNode(node);
 
-				if (convertedNode != null) {
-					_childNodes.Add(convertedNode);
+				if (node.Parent.Kind() == SyntaxKind.Block && node.Parent != _blockSyntax) {
+					continue;
+				} else {
+					NodeBase convertedNode = SyntaxNodeConverter.ConvertSyntaxNode(node);
+
+					if (convertedNode != null) {
+						_childNodes.Add(convertedNode);
+					}
+
+					_ConvertChildNodes(node);
 				}
-
-				_ConvertChildNodes(node);
 			}
 		}
 
