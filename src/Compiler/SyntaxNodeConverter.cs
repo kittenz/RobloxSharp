@@ -24,6 +24,12 @@ namespace RobloxSharp.Compiler {
 
 					return functionNode;
 				}
+				case SyntaxKind.InvocationExpression: {
+					var syntax = (InvocationExpressionSyntax)syntaxNode;	
+					Nodes.InvocationNode invocationNode = new Nodes.InvocationNode(syntax);
+
+					return invocationNode;
+				}
 				default: {
 					return null;
 				}
