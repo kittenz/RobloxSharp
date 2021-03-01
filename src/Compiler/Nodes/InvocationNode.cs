@@ -14,7 +14,7 @@ namespace RobloxSharp.Compiler.Nodes {
 			List<string> arguments = new List<string>();
 
 			foreach (var child in _invocationSyntax.ChildNodes()) {
-				if (child.Kind() == SyntaxKind.ArgListExpression) {
+				if (child.Kind() == SyntaxKind.ArgumentList) {
 					var argListSyntax = (ArgumentListSyntax)child;
 
 					foreach (var argument in argListSyntax.Arguments) {
