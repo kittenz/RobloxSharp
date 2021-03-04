@@ -6,7 +6,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace RobloxSharp.Compiler {
 	class Compiler {
-		private string _luaOutput = "-- Compiled with RobloxSharp\n";
+		private string _luaOutput = @"
+-- Compiled with RobloxSharp
+local RBLXSHARP_RUNTIME = game:GetService('ReplicatedStorage'):WaitForChild('RobloxSharpRuntime')
+
+";
 		private string _sourceCode = "";
 
 		public string LuaOutput { get => _luaOutput; }
