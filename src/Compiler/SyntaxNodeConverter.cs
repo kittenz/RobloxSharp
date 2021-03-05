@@ -30,6 +30,12 @@ namespace RobloxSharp.Compiler {
 
 					return invocationNode;
 				}
+				case SyntaxKind.ClassDeclaration: {
+					var syntax = (ClassDeclarationSyntax)syntaxNode;
+					Nodes.ClassNode classNode = new Nodes.ClassNode(syntax);
+
+					return classNode;
+				}
 				default: {
 					return null;
 				}
