@@ -36,6 +36,12 @@ namespace RobloxSharp.Compiler {
 
 					return classNode;
 				}
+				case SyntaxKind.UsingDirective: {
+					var syntax = (UsingDirectiveSyntax)syntaxNode;
+					Nodes.UsingNode usingNode = new Nodes.UsingNode(syntax);
+
+					return usingNode;
+				}
 				default: {
 					return null;
 				}

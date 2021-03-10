@@ -55,6 +55,12 @@ local RBLXSHARP_RUNTIME = game:GetService('ReplicatedStorage'):WaitForChild('Rob
 			SyntaxTree tree = CSharpSyntaxTree.ParseText(_sourceCode);
 			CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
 
+			foreach (UsingDirectiveSyntax usingDirective in root.Usings) {
+				_ParseSyntaxNode((CSharpSyntaxNode)usingDirective, false);
+			}
+
+			_luaOutput += "\n";
+
 			foreach (MemberDeclarationSyntax member in root.Members) {
 				CSharpSyntaxNode syntaxNode = (CSharpSyntaxNode)member;
 
