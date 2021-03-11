@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -45,18 +46,18 @@ namespace RobloxSharp.Compiler.Nodes {
 		}
 
 		override public string ToLua() {
-			string output = "";
+			StringBuilder output = new StringBuilder();
 			
-			output += $"{_GetBlockStartKeyword()}\n";
+			output.Append($"{_GetBlockStartKeyword()}\n");
 
 			foreach (var node in _childNodes) {
 				string lua = node.ToLua();
-				output += $"\t{lua}";
+				output.Append($"\t{lua}");
 			}
 
-			output += "end\n";
+			output.Append("end\n");
 
-			return output;
+			return output.ToString();
 		}
 	}
 }
